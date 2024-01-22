@@ -1,94 +1,32 @@
-for (let index = 0; index < 5; index++) {
+const Productos = [
+    {id: 1 , nombre:"camisa",precio:"1000$"},
+    {id: 2 , nombre:"pantalon",precio:"1500$"},
+    {id: 3 , nombre:"media",precio:"109$"},
+    {id: 4 , nombre:"gorra",precio:"1220$"},
+    {id: 5 , nombre:"calza",precio:"1100"}
+]
 
-let nombre = prompt("Ingrese su nombre")
-let operacion = prompt("Que producto qusieras averiguar")
+Productos.push({id: 6 , nombre:"anteojos",precio:"2000$"})
 
-if(nombre == "Mauro"){
-alert("Bienvenido mauro a la fabrica de nike")
-        if(operacion == "zapatillas") {
-            alert(`Muy bien estos son los modelos que manejamos
-            Zapatillas comunes
-            Zapatillas de vestir
-            Zapatillas elegantes` )
-            
-        }
-        else if(operacion == "zapatillas deportivas") {
-            alert(`muy bien estos son los modelos que nos manejamos
-            zapatillas con resortes
-            zapatillas para correr
-            zapatillas para entrenar`)
-        }
-        else if(operacion == "relojes") {
-            alert(`muy bien estos son los modelos que nos manejamos
-            relojes deportivos
-            relojes elegantes
-            relojes bulgaris
-            `)
-        }
-        else if(operacion == "ojotas") {
-            alert(`muy bien estos son los modelos que nos manejamos
-            ojotas de color rojo
-            ojotas de color verde
-            ojotas de color naranja `)
-        }
-    else {
-        alert("No se a encontrado ese servicio")
-    }
+Productos.forEach((item)=>{
+alert(item.id);
+alert(item.nombre);
+alert(item.precio);
+})
 
-}
-        
-        else if(nombre == "Franco"){
-            alert("bienvenido franco a la fabrica de nike")
-            if(operacion == "zapatillas") {
-                alert(`Muy bien estos son los modelos que manejamos
-                Zapatillas comunes
-                Zapatillas de vestir
-                Zapatillas elegantes` )
-                
-            }
-            else if(operacion == "zapatillas deportivas") {
-                alert(`muy bien estos son los modelos que nos manejamos`)
-            }
-            else if(operacion == "relojes") {
-                alert(`muy bien estos son los modelos que nos manejamos
-                relojes deportivos
-                relojes elegantes
-                relojes bulgaris
-                `)
-            }
-            else if(operacion == "ojotas") {
-                alert(`muy bien estos son los modelos que nos manejamos
-                ojotas de color rojo
-                ojotas de color verde
-                ojotas de color naranja `)
-            }
-        else {
-            alert("No se a encontrado ese servicio")
-        }
-}
-        
-else{
-            alert("No se a encontrado ese usuario por favor registrese")
-    }
+const productos =["camisa","pantalon","media","anteojos","gorra"]
 
+productos.push("calza")
+
+for (let index = 0; index < productos.length; index++) {
+    
+
+buscador = prompt("Que producto necesita camisa,media,pantalon,anteojos,gorra o calza")
+
+if(productos.includes(buscador)){
+    alert("Producto disponible")
 }
 
+else alert("Producto no disponible")
 
-
-const Clientes = dinero=>{
-let productos = prompt("¿cuantos productos vas a llevar ?");
-if (productos > 10){
-                    if (dinero >=1000 && dinero < 2000){
-                    alert("se te aplicara un descuento de 20%");
-        }
-            else{
-                alert(`se te aplicara un descuento del 10%`);
-        }
-    }else{
-        alert("no se te aplicara ningun descuento estas llevando muy poco")
-    }
 }
-
-Clientes(1200)
-Clientes(900)
-Clientes(1500)

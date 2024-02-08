@@ -1,54 +1,59 @@
-const Productos = [
-    {id: 1 , nombre:"camisa",precio:"1000$"},
-    {id: 2 , nombre:"pantalon",precio:"1500$"},
-    {id: 3 , nombre:"media",precio:"109$"},
-    {id: 4 , nombre:"gorra",precio:"1220$"},
-    {id: 5 , nombre:"calza",precio:"1100"}
+const btnCart = document.querySelector('.container-cart-icon');
+const containerCartProducts = document.querySelector(
+	'.container-cart-products'
+);
+
+btnCart.addEventListener('click', () => {
+	containerCartProducts.classList.toggle('hidden-cart');
+});
+
+
+
+
+// <<<<<<<<<<<<<<<<COMENTAR ESTA PARTE AUN ASI SE GUARDA EN Storage( NOSE AUN COMO HACER PARA TOCAR EL BOTON Y QUE AGREGUE)>>>>>>>>
+
+const Usuarios = [
+    {Carrito:1, nombre:"Zapatos Nike", Precio:"80$"},
+    {Carrito:2, nombre:"Audifonos", Precio:"20$"},
+    {Carrito:3, nombre:"Reloj", Precio:"50$"},
+    {Carrito:4, nombre:"Smartwatch", Precio:"90$"},
+	{Carrito:5,nombre:"Perfume",Precio:"50$"}
 ]
 
-Productos.push({id: 6 , nombre:"anteojos",precio:"2000$"})
+localStorage.setItem("Usuarios",JSON.stringify(Usuarios))
 
-Productos.forEach((item)=>{
-alert(item.id);
-alert(item.nombre);
-alert(item.precio);
+// <<<<<<<<<<<<<<<<COMENTAR ESTA PARTE AUN ASI SE GUARDA EN Storage( NOSE AUN COMO HACER PARA TOCAR EL BOTON Y QUE AGREGUE)>>>>>>>>
+
+// <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
+
+let Borrar = document.getElementById("borrar")
+let usuarios =[]
+let usuariosStorage = localStorage.getItem("Usuarios")
+
+if(usuariosStorage){
+    usuarios = JSON.parse(usuariosStorage)
+}
+
+usuarios.forEach(item => {
+    let div = document.createElement("div")
+    div.innerHTML =`
+	<div class="estructura">
+    <h3 class="titulo-producto-carrito">Productos:${item.Carrito}</h3>
+    <p class="titulo-producto-carrito">Nombre:${item.nombre}</p>
+    <b class="precio-producto-carrito">Precio:${item.Precio}</b>
+    </div>`;
+
+    document.getElementById("carrito").append(div)
+});
+
+// <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
+
+
+// <<<<<<<<<<<<BOTON(CRUZ) PARA ELIMINAR EL CARRITO>>>>>>>>>>
+Borrar.addEventListener("click",()=>{
+    localStorage.clear()
+    alert("Carrito eliminado")
+    location.reload()
 })
 
-const productos =["camisa","pantalon","media","anteojos","gorra"]
-
-productos.push("calza")
-
-for (let index = 0; index < productos.length; index++) {
-    
-
-buscador = prompt("Que producto necesita camisa,media,pantalon,anteojos,gorra o calza")
-
-if(productos.includes(buscador)){
-    alert("Producto disponible")
-}
-
-else alert("Producto no disponible")
-
-}
-
-
-// METODO FILTER
-
-const Articulos = [{id: 1 , nombre:"camisa",precio:1000},
-{id: 2 , nombre:"pantalon",precio:1500},
-{id: 3 , nombre:"media",precio:109},
-{id: 4 , nombre:"gorra",precio:1220},
-{id: 5 , nombre:"calza",precio:1100}]
-
-let Precio = Number(prompt("Cuanto dinero tienes los precios rondan entre 1000 y 1500"))
-
-const productosFiltrados = Articulos.filter(item=>item.precio <= Precio)
-
-
-productosFiltrados.forEach((item)=>{
-    alert(`id:${item.id}
-nombre:${item.nombre}
-precio:${item.precio}`
-    )
-}
-)
+// <<<<<<<<<<<<BOTON(CRUZ) PARA ELIMINAR EL CARRITO>>>>>>>>>>

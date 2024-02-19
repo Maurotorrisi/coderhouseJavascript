@@ -10,25 +10,27 @@ btnCart.addEventListener('click', () => {
 
 
 
-// <<<<<<<<<<<<<<<<COMENTAR ESTA PARTE AUN ASI SE GUARDA EN Storage( NOSE AUN COMO HACER PARA TOCAR EL BOTON Y QUE AGREGUE)>>>>>>>>
+// <<<<<<<<<<<<<<<<Se añade tocando el boton de zapatillas nike>>>>>>>>
 
 const Usuarios = [
-    {Carrito:1, nombre:"Zapatos Nike", Precio:"80$"},
-    {Carrito:2, nombre:"Audifonos", Precio:"20$"},
-    {Carrito:3, nombre:"Reloj", Precio:"50$"},
-    {Carrito:4, nombre:"Smartwatch", Precio:"90$"},
-	{Carrito:5,nombre:"Perfume",Precio:"50$"}
+    {Carrito:1, nombre:"Zapatos Nike", Precio:"80$"}
 ]
 
 localStorage.setItem("Usuarios",JSON.stringify(Usuarios))
 
-// <<<<<<<<<<<<<<<<COMENTAR ESTA PARTE AUN ASI SE GUARDA EN Storage( NOSE AUN COMO HACER PARA TOCAR EL BOTON Y QUE AGREGUE)>>>>>>>>
+// <<<<<<<<<<<<<<<<Se añade tocando el boton de zapatillas>>>>>>>>
 
 // <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
 
+
 let Borrar = document.getElementById("borrar")
-let usuarios =[]
+
 let usuariosStorage = localStorage.getItem("Usuarios")
+
+
+let Añadir = document.getElementById("añadir")
+Añadir.addEventListener("click",()=>{
+let usuarios =[]
 
 if(usuariosStorage){
     usuarios = JSON.parse(usuariosStorage)
@@ -45,14 +47,14 @@ usuarios.forEach(item => {
 
     document.getElementById("carrito").append(div)
 });
-
+})
 // <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
 
 
 // <<<<<<<<<<<<BOTON(CRUZ) PARA ELIMINAR EL CARRITO>>>>>>>>>>
 Borrar.addEventListener("click",()=>{
     localStorage.clear()
-    alert("Carrito eliminado")
+    // alert("Carrito eliminado")
     location.reload()
 })
 

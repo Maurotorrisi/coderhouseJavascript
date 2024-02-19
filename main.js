@@ -10,8 +10,6 @@ btnCart.addEventListener('click', () => {
 
 
 
-// <<<<<<<<<<<<<<<<Se añade tocando el boton de zapatillas nike>>>>>>>>
-
 const Usuarios = [
     {Carrito:1, nombre:"Zapatos Nike", Precio:"80$"}
 ]

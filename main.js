@@ -1,59 +1,119 @@
-const btnCart = document.querySelector('.container-cart-icon');
-const containerCartProducts = document.querySelector(
-	'.container-cart-products'
-);
-
-btnCart.addEventListener('click', () => {
-	containerCartProducts.classList.toggle('hidden-cart');
-});
 
 
+// Función para actualizar el contenido del carrito
+function actualizarCarrito() {
+    // Obtiene los usuarios almacenados en el localStorage
+    const usuariosStorage = localStorage.getItem("Usuarios");
+   
+    // Obtiene una referencia al elemento HTML con el id "carrito"
+    const carritoElement = document.getElementById("carrito");
+   
+    // Limpia el contenido actual del carrito
+    carritoElement.innerHTML = "";
+   
+    // Si hay usuarios almacenados, itera sobre cada uno
+    if (usuariosStorage) {
+      const usuarios = JSON.parse(usuariosStorage);
+      usuarios.forEach(item => {
+        // Crea un nuevo elemento <div> para mostrar la información del producto
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <div class="estructura">
+            <h3 class="titulo-producto-carrito">Producto: ${item.Carrito}</h3>
+            <p class="titulo-producto-carrito">Nombre: ${item.nombre}</p>
+            <b class="precio-producto-carrito">Precio: ${item.Precio}</b>
+          </div>`;
+        // Agrega el elemento al carrito
+        carritoElement.appendChild(div);
+      });
+    }
+   }
+   
+   // Event listener para mostrar/ocultar el carrito al hacer clic en el ícono
+   const btnCart = document.querySelector('.container-cart-icon');
+   const containerCartProducts = document.querySelector('.container-cart-products');
+   btnCart.addEventListener('click', () => {
+    containerCartProducts.classList.toggle('hidden-cart');
+   });
+   
+   // Event listener para agregar productos al carrito
+   const Añadir = document.querySelectorAll(".btn-add-cart");
+   Añadir.forEach(button => {
+    button.addEventListener("click", () => {
+      // Obtiene la lista de usuarios o crea una lista vacía
+      let usuarios = JSON.parse(localStorage.getItem("Usuarios")) || [];
+      // Crea un objeto "producto" con información del botón clickeado
+      const producto = {
+        Carrito: usuarios.length + 1,
+        nombre: button.parentElement.querySelector("h2").textContent,
+        Precio: button.parentElement.querySelector(".price").textContent
+      };
+      // Agrega el producto a la lista de usuarios
+      usuarios.push(producto);
+      // Actualiza el localStorage con la lista de usuarios actualizada
+      localStorage.setItem("Usuarios", JSON.stringify(usuarios));
+      // Actualiza el carrito en la interfaz
+      actualizarCarrito();
+    });
+   });
+   
+   // Llama a la función para inicializar el carrito
+   actualizarCarrito();
+   
+   // Event listener para borrar todos los datos del localStorage
+   const Borrar = document.getElementById("borrar");
+   Borrar.addEventListener("click", () => {
+    localStorage.clear();
+    // Actualiza el carrito en la interfaz
+    actualizarCarrito();
+   });
+   
 
+// Registro con swettAlert2
 
-const Usuarios = [
-    {Carrito:1, nombre:"Zapatos Nike", Precio:"80$"}
-]
+let Enviar = document.getElementById("registro")
 
-localStorage.setItem("Usuarios",JSON.stringify(Usuarios))
-
-// <<<<<<<<<<<<<<<<Se añade tocando el boton de zapatillas>>>>>>>>
-
-// <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
-
-
-let Borrar = document.getElementById("borrar")
-
-let usuariosStorage = localStorage.getItem("Usuarios")
-
-
-let Añadir = document.getElementById("añadir")
-Añadir.addEventListener("click",()=>{
-let usuarios =[]
-
-if(usuariosStorage){
-    usuarios = JSON.parse(usuariosStorage)
-}
-
-usuarios.forEach(item => {
-    let div = document.createElement("div")
-    div.innerHTML =`
-	<div class="estructura">
-    <h3 class="titulo-producto-carrito">Productos:${item.Carrito}</h3>
-    <p class="titulo-producto-carrito">Nombre:${item.nombre}</p>
-    <b class="precio-producto-carrito">Precio:${item.Precio}</b>
-    </div>`;
-
-    document.getElementById("carrito").append(div)
-});
+Enviar.addEventListener("click",(e)=>{
+    e.preventDefault()
+    Swal.fire({
+        title: "Enviado",
+        text: "Tu registro fue enviado con exito",
+        icon: "success",
+    });
 })
-// <<<<<<<<<<<<<<<<<<CREADOR DE DIVS>>>>>>>>>>>>>
 
+// Iniciar Sesion con swettAlert2
 
-// <<<<<<<<<<<<BOTON(CRUZ) PARA ELIMINAR EL CARRITO>>>>>>>>>>
-Borrar.addEventListener("click",()=>{
-    localStorage.clear()
-    // alert("Carrito eliminado")
-    location.reload()
+let iniciarSesion = document.getElementById("iniciarSesion")
+
+iniciarSesion.addEventListener("click",(e)=>{
+    e.preventDefault()
+    Swal.fire({
+        title: "inicio de sesion",
+        text: "Tu inicio de sesion a sido exitoso",
+        icon: "success",
+    });
 })
 
-// <<<<<<<<<<<<BOTON(CRUZ) PARA ELIMINAR EL CARRITO>>>>>>>>>>
+// Uso de fetch
+const Personal = document.getElementById("Personal")
+
+ fetch("https://jsonplaceholder.typicode.com/users")
+//  Tomando las promesas con .then
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((item) => {
+      const Div = document.createElement("div")
+      // Dando una clase a los divs
+      Div.className = ("card m-2 col-lg-5 ")
+      // Creacion de divs
+      Div.innerHTML = `
+        <h4 class=""> ${item.name}</h4>
+        <p>Usuario: ${item.username}</p>
+        <p>Contacto: ${item.email}</p>
+        `;
+
+      Personal.append(Div);
+    });
+  });
+

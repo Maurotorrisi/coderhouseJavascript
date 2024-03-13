@@ -1,5 +1,4 @@
 
-
 // Función para actualizar el contenido del carrito
 function actualizarCarrito() {
     // Obtiene los usuarios almacenados en el localStorage
@@ -60,6 +59,10 @@ function actualizarCarrito() {
    // Llama a la función para inicializar el carrito
    actualizarCarrito();
    
+   
+  
+
+
    // Event listener para borrar todos los datos del localStorage
    const Borrar = document.getElementById("borrar");
    Borrar.addEventListener("click", () => {
@@ -95,9 +98,13 @@ iniciarSesion.addEventListener("click",(e)=>{
     });
 })
 
-// Uso de fetch
-const Personal = document.getElementById("Personal")
 
+
+// ACA ESTOY UTILIZANDO FETCH TRAYENDO DATOS DEDSDE UNA API
+
+
+
+const Personal = document.getElementById("Personal")
  fetch("https://jsonplaceholder.typicode.com/users")
 //  Tomando las promesas con .then
   .then((response) => response.json())
@@ -117,3 +124,31 @@ const Personal = document.getElementById("Personal")
     });
   });
 
+
+
+
+
+
+
+// Intente de forma local pero no me sale por que no me aparece en el navegador(puse import haber si funcionaba y tampoco)
+
+// const traerDatos = async () => {
+//   try {
+//       const response = await fetch(import("./data.json"));
+//       const data = await response.json();
+      
+//       data.forEach((item) => {
+//           const card = document.createElement("div");;
+//           card.innerHTML = `
+//         <h4 class=""> ${item.name}</h4>
+//        <p>Usuario: ${item.username}</p>
+//        <p>Contacto: ${item.email}</p>
+//        <p>Contacto: ${item.contacto}</p>
+//        `
+//           Personal.append(card);
+//       })
+//       }
+//       catch (error) {
+//       console.log(error);
+//   }
+// };
